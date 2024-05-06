@@ -20,10 +20,8 @@ func (c *cockoachPosgresRepository) InsertCockoachData(in *entity.InsertCockroac
 	data := &entity.Cockroach{
 		Amount: in.Amount,
 	}
-
 	result := c.db.GetDb().Create(data)
 	if result.Error != nil {
-		// log.Errorf()
 		log.Errorf("InsertCockroachData %v", result.Error)
 		return result.Error
 	}

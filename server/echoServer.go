@@ -20,13 +20,11 @@ type echoServer struct {
 	config *config.Config
 }
 
-// initializeCockroachHttpHandler implements Server.
 func (e *echoServer) initializeCockroachHttpHandler() {
 	repo := repoCockroah.NewCockroachPostgresRepository(e.db)
 	fmc := repoCockroah.NewCockroachFCMMessaging()
 
 	usecases := usecasesCockroach.NewCockoachUsecaseImp(repo, fmc)
-
 	httpHandler := handlersCockroach.NewCockoachHttpHandler(usecases)
 
 	cockroachRouters := e.app.Group("v1/cockroach")
